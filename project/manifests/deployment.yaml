@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dwk-2020-project-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dwk-2020-project
+  template:
+    metadata:
+      labels:
+        app: dwk-2020-project
+    spec:
+      containers:
+      - name: dwk-2020-project
+        image: shomarov/dwk-2020-project:v0.2
