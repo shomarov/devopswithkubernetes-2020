@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: dwk-2020-project
-        image: shomarov/dwk-2020-project:v0.3
+        image: shomarov/dwk-2020-project:v0.4
