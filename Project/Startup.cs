@@ -30,7 +30,7 @@ namespace project
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                endpoints.MapGet("/project", async context =>
                 {
                     await context.Response.WriteAsync("Hello Kubernetes!");
                 });
