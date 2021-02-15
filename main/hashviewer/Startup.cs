@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -8,11 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace MainApplication
+namespace hashviewer
 {
     public class Startup
     {
-        private readonly string randomString = Guid.NewGuid().ToString();
+        private readonly string hash = Guid.NewGuid().ToString();
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -34,7 +35,8 @@ namespace MainApplication
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync($"{DateTime.UtcNow.ToString("o")} {randomString}");
+                    var timestamp = await File.ReadAllTextAsync("/app/files/timestamp.txt");
+                    await context.Response.WriteAsync($"{timestamp} {hash}");
                 });
             });
         }

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dwk-2020-main-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dwk-2020-main
+  template:
+    metadata:
+      labels:
+        app: dwk-2020-main
+    spec:
+      volumes: # Define volume
+        - name: shared-files
+          emptyDir: {}
+      containers:
+        - name: timestampgenerator
+          image: shomarov/dwk-2020-main-timestampgenerator:latest
+          volumeMounts:
+            - mountPath: /app/files
+              name: shared-files
+        - name: hashviewer
+          image: shomarov/dwk-2020-main-hashviewer:latest
+          volumeMounts:
+            - mountPath: /app/files
+              name: shared-files

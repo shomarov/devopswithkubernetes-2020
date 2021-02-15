@@ -7,6 +7,6 @@ spec:
   selector:
     app: dwk-2020-main
   ports:
-    - port: 2346
+    - port: 2344
       protocol: TCP
       targetPort: 80
